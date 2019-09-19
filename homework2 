@@ -1,0 +1,197 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep 18 18:17:14 2019
+
+@author: elenharutyunyan
+"""
+#%%
+#Problem 1 
+###  Напишите функцию, которая принимает один аргумент 𝑛 и возвращает True, если 𝑛 четное, и False, если 𝑛 нечетное. Пример:
+def even(n): #n is an arguement
+    if (n % 2) == 0:
+        return True
+    else:
+        return False 
+print(even(357))
+#%%
+#Problem 2
+###Напишите функцию, которая принимает один аргумент — список 𝐿 и возвра- щает список элементов 𝐿 в обратном порядке. Пример:
+def lreverse(L):
+    if type(L)  != list:
+        return f'The argument should be a list'
+    else:
+        return  list(reversed(L))      
+print(lreverse([2,3,4,7]))
+#%%
+#Problem 2
+def lreverse(L):
+    if type(L)  != list:
+        return f'The argument should be a list'
+    else:
+        return  L[::-1]      
+print(lreverse([2,3,4,7]))
+#%%
+#Problem 3
+#Напишите функцию, которая принимает один аргумент — список 𝐿 и возвра- щает кортеж, в котором содержится наибольший элемент списка и его индекс (номер). Пример:
+def maxindex(L):
+    if type(L)  != list:
+        return f'The argument should be a list'
+    else: 
+        return  tuple([max(L),L.index(max(L))]) 
+print(maxindex([2,2,2,2,4,5,7]))
+
+#%%
+#Problem 3
+def maximizer(L):
+    index_element = []
+    for index, element in enumerate(L):
+        if element == max(L):
+            index_element.append(index)
+            index_element.append(element)
+            return tuple(index_element) 
+maximizer([1,2,4,5,76,453,1,23,4,5,6])
+
+#%%
+#Problem 4
+def diffbet(L):
+    difference=[]
+    if type(L)  != list:
+        return f'The argument should be a list'
+    for index,value in enumerate(L): #enumerate returns couple
+       if index == 0:
+           pass
+       else:
+           difference.append(L[index]-L[index-1]) #a recall the value by index
+    return difference
+    
+print(diffbet([2,2,2,2,4,5,7]))   
+#%%
+#Problem 5
+def digittolist(n):
+    diggits=[]
+    if type(n)  != int and n < 0:
+       return f'The argument should be a natural number'
+    for value in str(n):
+        diggits.append(int(value))
+    return diggits
+
+print(digittolist(123456))   
+
+#%%
+#Problem 6
+def leapyear(n):
+    if type(n)  != int and n < 0:
+       return f'The input value should be a natural number'
+    years=[]
+    i=1
+    while i<=4*n:
+            years.append(2019+i)  
+            i=i+1
+    leapyears=[]
+    for value in years:
+        if (value % 400) == 0:
+            leapyears.append(value)
+        elif (value % 100) == 0:
+            pass
+        elif (value % 4) == 0:
+            leapyears.append(value)
+        else:
+            pass
+    return leapyears
+print(leapyear(100))
+#%%
+#Problem 7
+def polindrome(S):
+    if type(S)  != str:
+       return f'The input value should be a string'
+    if S[::-1] == S:
+       return True
+    else: 
+       return False
+print(polindrome('dob'))
+#%%
+#Problem 8
+def threesome(n):
+     if type(n)  != int and n < 0:
+       return f'The input value should be a natural number'
+     numbersunder = []
+     i=1
+     while i<=n-1:
+         numbersunder.append(i)
+         i=i+1
+     threees = []
+     for value in numbersunder:
+         if (value % 3) == 0:
+            threees.append(value) 
+         elif '3' in str(value): 
+            threees.append(value) 
+         else:
+             pass
+     return sum(threees)
+print(threesome(100))
+#%%
+##Problem 9
+#def init_words(fname):
+#    words = {} #creating empty dictionary
+#    with open(fname) as f: #opening the file
+#        for line in f: #read by lines
+#            word = line.strip() #erase all the spaces
+#            words[word] = 'test' #creating dictironary of type {'word in line': 'test'}
+#    return words
+#
+#word_dict = init_words('/Users/elenharutyunyan/Desktop/data science/words-list-russian.txt')
+#word_dict  #place everything in word_dict for further work
+#
+#def init_anagram_dict(words):
+#    anagram_dict = {}
+#    for word in words: #we loop through keys in dictionary 
+#        sorted_word = ''.join(sorted(list(word))) #it takes the word sorts and writes jointly in the place of the key
+#        if sorted_word not in anagram_dict: #if in the dictrionary the anagram exists then dont add
+#            anagram_dict[sorted_word] = [] #creaste a list as a key
+#        anagram_dict[sorted_word].append(word) #then add not sorted words to the list
+#    return anagram_dict
+##returns anagram(sorted word) as a key and all corresponding words as a value
+#def anagrams():
+#    anagram_dict = init_anagram_dict(word_dict.keys())
+#    for value in anagram_dict.values():
+#        if len(value) >= 4:
+#            print(value)
+#anagrams()
+#%%
+#Problem10
+def typesetter( filepath, word):
+    with open(filepath, 'r') as f:
+        content = f.readlines()
+    content = list(map(str.rstrip, content))
+    content_list = list(map(list,content))
+    auto_list = list(word)
+    for word_list in content_list:
+        if all(elem in auto_list for elem in word_list):
+            if word_list.count('а') <= 1 and word_list.count('в') <= 1 and word_list.count('т') <= 2 and word_list.count('о') <= 2 and word_list.count('и') <= 1 and word_list.count('н') <= 1 and word_list.count('с') <= 1 and word_list.count('п') <= 1 and word_list.count('е') <= 1 and word_list.count('к') <= 1 and word_list.count('р') <= 1:
+                print(''.join(word_list))
+typesetter('/Users/elenharutyunyan/Desktop/data science/words-list-russian.txt', 'автоинспектор')
+
+#%%
+#Problem 9
+def anagrams(filepath):
+    
+    words = {}
+    with open(filepath) as f:
+        for line in f:
+            word = line.strip()
+            words[word] = 'some value'
+    
+    anagram_dict = {}
+    for word in words.keys():
+        sorted_word = ''.join(sorted(list(word)))
+        if sorted_word not in anagram_dict:
+            anagram_dict[sorted_word] = []
+        anagram_dict[sorted_word].append(word)
+    
+    for value in anagram_dict.values():
+        if len(value) >= 4:
+            print(value)
+    
+anagrams('/Users/elenharutyunyan/Desktop/data science/words-list-russian.txt')
+
